@@ -3,10 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <ranges>
+#include "lib.hpp"
 
 using namespace std;
-
-tuple<int, int> line_to_numbers(string line);
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -37,10 +36,4 @@ int main(int argc, char **argv) {
   }
   cout << result << endl;
   return 0;
-}
-
-tuple<int, int> line_to_numbers(string line) {
-  vector<string> results;
-  boost::split(results, line, boost::is_any_of(" "));
-  return {stoi(results.front()), stoi(results.back())};
 }

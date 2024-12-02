@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.2)
+project(day01)
+set(BOOST_INCLUDE_LIBRARIES algorithm)
+add_subdirectory(../boost ../../vendor/boost EXCLUDE_FROM_ALL)
+add_executable(part1 src/main.cxx)
+add_executable(part2 src/part2.cxx)
+target_link_libraries(part1 PRIVATE boost_algorithm)
+target_link_libraries(part2 PRIVATE boost_algorithm)

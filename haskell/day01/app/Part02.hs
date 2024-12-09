@@ -2,8 +2,8 @@ module Main where
 
 import Data.List.Split (splitOn)
 import qualified Data.Map as Map
-import System.Environment (getArgs)
 import Debug.Trace (trace)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do

@@ -1,16 +1,17 @@
-module Day04.Grid (
-  Grid,
-  Position,
-  Direction,
-  inBounds,
-  countXMAS,
-  findAllXMAS,
-  directions,
-  charAt,
-  checkXMAS,
-  readGrid,
-  printGrid
-) where
+module Day04.Grid
+  ( Grid,
+    Position,
+    Direction,
+    inBounds,
+    countXMAS,
+    findAllXMAS,
+    directions,
+    charAt,
+    checkXMAS,
+    readGrid,
+    printGrid,
+  )
+where
 
 import Control.Monad (forM_)
 
@@ -27,10 +28,9 @@ countXMAS grid = length $ findAllXMAS grid
 
 -- Find all positions where XMAS appears
 findAllXMAS :: Grid -> [Position]
-findAllXMAS grid = [(row, col) | row <- [0..(length grid)],
-                                 col <- [0..(length $ head grid)],
-                                 direction <- directions,
-                                 checkXMAS grid (row, col) direction]
+findAllXMAS grid =
+  [ (row, col) | row <- [0 .. (length grid)], col <- [0 .. (length $ head grid)], direction <- directions, checkXMAS grid (row, col) direction
+  ]
 
 -- Helper function to get all possible directions for searching
 directions :: [Direction]
@@ -47,7 +47,7 @@ directions =
 
 -- Helper to check if a position is within grid bounds
 inBounds :: Grid -> Position -> Bool
-inBounds [] _ = False  -- Handle empty grid case
+inBounds [] _ = False -- Handle empty grid case
 inBounds grid (row, col) =
   let height = length grid
       width = if height > 0 then length (head grid) else 0
@@ -59,7 +59,9 @@ charAt grid position@(row, col) = if inBounds grid position then Just (grid !! r
 
 -- Helper to check if XMAS exists starting from a position in a given direction
 checkXMAS :: Grid -> Position -> Direction -> Bool
-checkXMAS grid start direction = charAt grid start == Just 'X' && [Just 'M', Just 'A', Just 'S'] == map (charAt grid) direction
+checkXMAS grid start@(x0, y0) direction = charAt grid start == Just 'X' && [Just 'M', Just 'A', Just 'S'] == map f direction
+  where
+    f (dx, dy) = charAt grid (x0 + dx, y0 + dy)
 
 -- Read input file and convert to grid
 readGrid :: FilePath -> IO Grid

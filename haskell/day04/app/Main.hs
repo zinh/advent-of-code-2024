@@ -1,4 +1,16 @@
-module Main where
+module Main (
+  Grid,
+  Position,
+  Direction,
+  inBounds,
+  countXMAS,
+  findAllXMAS,
+  directions,
+  charAt,
+  checkXMAS,
+  readGrid,
+  printGrid
+) where
 
 import Control.Monad (forM_)
 import System.Environment (getArgs)

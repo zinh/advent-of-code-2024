@@ -1,6 +1,6 @@
 module Main where
 
-import Day04.Grid (Direction, Grid, Position, charAt, checkXMAS, inBounds)
+import Day04.Grid (Direction, Grid, Position, charAt, checkXMAS, inBounds, checkXMAS2)
 import Test.HUnit
 
 testGrid :: Grid
@@ -15,7 +15,7 @@ emptyGrid :: Grid
 emptyGrid = []
 
 tests :: Test
-tests = TestList [inBoundsTests, charAtTests, checkXMASTests]
+tests = TestList [inBoundsTests, charAtTests, checkXMASTests, checkXMAS2Tests]
 
 inBoundsTests :: Test
 inBoundsTests =
@@ -136,6 +136,30 @@ checkXMASTests =
           "Should not find XMAS in empty grid"
           False
           (checkXMAS emptyGrid (0, 0) direction)
+    ]
+
+testGrid2 :: Grid
+testGrid2 =
+  [ "SMSS",
+    "MAMX",
+    "MSMM",
+    "SMAS"
+  ]
+
+checkXMAS2Tests :: Test
+checkXMAS2Tests =
+  TestList
+    [ TestLabel "Valid XMAS" $ TestCase $ do
+        assertEqual
+          "Valid XMAS"
+          True
+          (checkXMAS2 testGrid2 (1, 1)),
+      TestLabel "Invalid XMAS" $ TestCase $ do
+        assertEqual
+          "Invalid XMAS"
+          False
+          (checkXMAS2 testGrid2 (1, 2))
+
     ]
 
 main :: IO ()

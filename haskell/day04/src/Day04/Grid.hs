@@ -4,10 +4,12 @@ module Day04.Grid
     Direction,
     inBounds,
     countXMAS,
+    countXMAS2,
     findAllXMAS,
     directions,
     charAt,
     checkXMAS,
+    checkXMAS2,
     readGrid,
     printGrid,
   )
@@ -25,6 +27,10 @@ type Direction = [Position]
 -- Main function that counts all occurrences of XMAS
 countXMAS :: Grid -> Int
 countXMAS grid = length $ findAllXMAS grid
+
+countXMAS2 :: Grid -> Int
+countXMAS2 grid = length $ filter id allXmas
+  where allXmas = [checkXMAS2 grid (row, col)| row <- [0..length grid], col <- [0..length $ head grid]]
 
 -- Find all positions where XMAS appears
 findAllXMAS :: Grid -> [Position]

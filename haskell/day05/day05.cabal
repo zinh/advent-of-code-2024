@@ -10,7 +10,7 @@ build-type:         Simple
 common common-all
     ghc-options:        -Wall
     default-language:   GHC2021
-    build-depends:      base ^>=4.17.2.0
+    build-depends:      base ^>=4.16.4.0
                      , containers
                      , text
                      , parsec

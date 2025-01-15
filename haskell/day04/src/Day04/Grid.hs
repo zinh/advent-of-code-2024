@@ -47,10 +47,11 @@ directions =
 
 -- Helper to check if a position is within grid bounds
 inBounds :: Grid -> Position -> Bool
+inBounds [] _ = False  -- Handle empty grid case
 inBounds grid (row, col) =
-  let width = length (head grid)
-      height = length grid
-   in row < width && row >= 0 && col < height && col >= 0
+  let height = length grid
+      width = if height > 0 then length (head grid) else 0
+   in row >= 0 && row < height && col >= 0 && col < width
 
 -- Helper to get a character at a given position
 charAt :: Grid -> Position -> Maybe Char

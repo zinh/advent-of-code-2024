@@ -59,9 +59,10 @@ charAt grid position@(row, col) = if inBounds grid position then Just (grid !! r
 
 -- Helper to check if XMAS exists starting from a position in a given direction
 checkXMAS :: Grid -> Position -> Direction -> Bool
-checkXMAS grid start@(x0, y0) direction = charAt grid start == Just 'X' && [Just 'M', Just 'A', Just 'S'] == map f direction
+checkXMAS grid start@(x0, y0) direction = chars == [Just 'X', Just 'M', Just 'A', Just 'S']
   where
     f (dx, dy) = charAt grid (x0 + dx, y0 + dy)
+    chars = charAt grid start : map f direction
 
 -- Read input file and convert to grid
 readGrid :: FilePath -> IO Grid

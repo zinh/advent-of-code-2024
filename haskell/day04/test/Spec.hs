@@ -1,7 +1,7 @@
 module Main where
 
 import Test.HUnit
-import Main (Grid, Position, inBounds)
+import Day04.Grid (Grid, Position, inBounds)
 
 testGrid :: Grid
 testGrid = [ "ABC"

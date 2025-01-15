@@ -1,0 +1,35 @@
+cabal-version:      3.0
+name:               day05
+version:            0.1.0.0
+synopsis:           Day 5 solution for Advent of Code 2024
+license:            MIT
+author:             Vinh
+maintainer:         vinh@example.com
+build-type:         Simple
+
+common common-all
+    ghc-options:        -Wall
+    default-language:   GHC2021
+    build-depends:      base ^>=4.17.2.0
+                     , containers
+                     , text
+                     , parsec
+
+library
+    import:             common-all
+    hs-source-dirs:     src
+    exposed-modules:    Lib
+
+executable day05
+    import:             common-all
+    main-is:           Main.hs
+    hs-source-dirs:    app
+    build-depends:     day05
+
+test-suite day05-test
+    import:             common-all
+    type:              exitcode-stdio-1.0
+    hs-source-dirs:    test
+    main-is:           Spec.hs
+    build-depends:     day05
+                     , HUnit

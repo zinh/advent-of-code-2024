@@ -41,7 +41,7 @@ parseInput = parse gridParser ""
 
 -- Simulate the guard's path
 simulateGuardPath :: Grid -> GuardState -> [Position]
-simulateGuardPath grid state = undefined -- Implement this
+simulateGuardPath grid state = undefined -- TODO: Implement this
 
 -- Main function to count distinct positions
 countDistinctPositions :: Grid -> GuardState -> Int

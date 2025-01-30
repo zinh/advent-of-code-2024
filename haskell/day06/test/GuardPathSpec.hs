@@ -1,14 +1,13 @@
-module GuardPathSpec where
+module GuardPathSpec (spec) where  -- Export the `spec` function
 
-import Test.Hspec
-import Test.QuickCheck
-import GuardPath
+import Test.Hspec (Spec, describe, it, shouldBe)
+import GuardPath (parseInput, countDistinctPositions, Position(..), GuardState(..), Direction(..))
 import Data.Text (pack)
 import Data.Map (Map)
 import qualified Data.Map as Map
 
-main :: IO ()
-main = hspec $ do
+spec :: Spec
+spec = do
   describe "parseInput" $ do
     it "parses a simple grid with a guard" $ do
       let input = pack "....#.....\n....^....#\n..........\n"
